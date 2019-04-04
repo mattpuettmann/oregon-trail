@@ -34,8 +34,10 @@ class Group {
 	}
 }
 
-let playersGroup = new Group('', 0, 0, 0, 0)
 
+$('.wagon').hide();
+$('.gameButtons').hide();
+let playersGroup = new Group('', 0, 0, 0, 0)
 
 let timePassing;
 let seconds = 0;
@@ -53,6 +55,9 @@ $('.treat').on('click', (e) => {
 
 $('form').on('submit', (e) => {
 	e.preventDefault();
+	$('.wagon').show();
+	$('.gameButtons').show();
+	wagonMoves();
 	const playerName = $('.nameInput').val();
 	console.log(playerName);
 	$('.nameInput').val('');
@@ -122,6 +127,9 @@ const hungerGoesUp = () => {
 const healthGoesUp = () => {
 	playersGroup.health++;
 	$('.health').text(`Health: ${playersGroup.health}`);
+}
+const wagonMoves = () => {
+	$('.wagon').animate({left: '1050px'}, 18000)
 }
 
 
