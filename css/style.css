@@ -1,3 +1,22 @@
 h1 {
 	font-family: 'Arial';
+	text-align: center;
 }
+
+form {
+	text-align: center;
+}
+
+.timeStats {
+	padding: 30px 0 0 0;
+	text-align: center;
+}
+.timeStats h4 {
+	display: inline;
+	padding: 0 30px 0 30px;
+}
+
+
+
+
+

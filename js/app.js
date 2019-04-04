@@ -41,6 +41,15 @@ let timePassing;
 let seconds = 0;
 let minutes = 0;
 
+$('.feed').on('click', (e) => {
+	playersGroup.hunger--;
+	$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
+});
+$('.treat').on('click', (e) => {
+	playersGroup.health--;
+	$('.health').text(`Health: ${playersGroup.health}`);
+});
+
 
 $('form').on('submit', (e) => {
 	e.preventDefault();
@@ -49,8 +58,6 @@ $('form').on('submit', (e) => {
 	$('.nameInput').val('');
 	$('.vitals h3').text(`${playerName}'s Pioneer Group:`)
 	timePassing = setInterval(timerStart, 100);
-
-
 });
 
 
@@ -64,9 +71,38 @@ const timerStart = () => {
 		minutes++;
 		$('.minutes').text(`Minutes: ${minutes}`);
 	}
-	if (seconds % 120 === 0 && seconds > 60) {
+	if (seconds % 10 === 0) {
 		hungerGoesUp();
 	}
+	if (seconds % 30 === 0) {
+		healthGoesUp();
+	}
+	if (seconds >= 180) {
+		alert("You've crossed the Great Plains! Time to venture into the Rocky Mountains!");
+		clearInterval(timePassing);
+	}
+
+
+
+
+
+
+	if (playersGroup.hunger >= 10 || playersGroup.health >= 10) {
+		clearInterval(timePassing);
+		alert("Everyone is dead!");
+		let value = prompt('Play again? y/n')
+			if (value === 'y') {
+				console.log('y');
+			location.reload(true);
+			}
+	}
+
+
+
+
+
+
+
 }
 
 
@@ -76,9 +112,16 @@ const timerStart = () => {
 
 
 
+// const levelGoesUp = () => {
 
+// }
 const hungerGoesUp = () => {
-
+	playersGroup.hunger++;
+	$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
+}
+const healthGoesUp = () => {
+	playersGroup.health++;
+	$('.health').text(`Health: ${playersGroup.health}`);
 }
 
 
