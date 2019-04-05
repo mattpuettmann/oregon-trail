@@ -9,16 +9,15 @@ let seconds = 0;
 let minutes = 0;
 
 class Group {
-	constructor(name, hunger, health, supplies, food) {
+	constructor(name, hunger, health, food) {
 	this.name = name;
 	this.hunger = hunger;
 	this.health = health;
-	this.supplies = supplies;
 	this.food = food;
 	}
 }
 
-let playersGroup = new Group('', 0, 0, 0, 0);
+let playersGroup = new Group('', 0, 0, 0);
 
 
 
@@ -59,15 +58,22 @@ const timerStart = () => {
 	if (seconds % 30 === 0) {
 		healthGoesUp();
 	}
-	if (seconds % 60 === 0) {
-		suppliesGoDown();
-	}
 	if (seconds >= 180 && seconds < 181) {
 		alert("You've crossed the Great Plains! Time to venture into the Rocky Mountains!");
 		$('.timeStats .level').text("Level: 2");
 		wagonMoves();
 		levelTwo();
+	} else if (seconds > 360 && seconds < 362) {
+		console.log('level 3 firing');
+		alert("You've crossed the Rockies! Now onto the Pacific Northwest!");
+		$('.timeStats .level').text("Level: 3");
+		wagonMoves();
+	} else if (seconds > 540 && seconds < 542) {
+		console.log('final level firing');
+		alert("You're almost there! You just need to FORD THE RIVER!!!");
+		$('timeStats .level').text("Level: FINAL!");
 	}
+	
 	if (playersGroup.hunger >= 10 || playersGroup.health >= 10) {
 		clearInterval(timePassing);
 		alert("Everyone is dead!");
@@ -97,11 +103,11 @@ const healthGoesUp = () => {
 	playersGroup.health++;
 	$('.health').text(`Health: ${playersGroup.health}`);
 };
-const suppliesGoDown = () => {
-	let supplies = 100;
-	playersGroup.supplies--;
-	$('.supplies').text(`Supplies: ${playersGroup.supplies}`);
-};
+// const suppliesGoDown = () => {
+// 	let supplies = 100;
+// 	playersGroup.supplies--;
+// 	$('.supplies').text(`Supplies: ${playersGroup.supplies}`);
+// };
 
 
 
@@ -110,15 +116,20 @@ const suppliesGoDown = () => {
 $('.gameButtonFeed').on('click', (e) => {
 	playersGroup.hunger--;
 	$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
+	if (seconds % 180 === 0) {
+		foodTotal--;
+		console.log("button shouldn't work")
+		console.log(foodTotal);
+	}
 });
 $('.gameButtonTreat').on('click', (e) => {
 	playersGroup.health--;
 	$('.health').text(`Health: ${playersGroup.health}`);
 });
-$('.gameButtonSupplies').on('click', (e) => {
-	playersGroup.supplies++;
-	$('.supplies').text(`Supplies: (${playersGroup.supplies}`);
-});
+// $('.gameButtonSupplies').on('click', (e) => {
+// 	playersGroup.supplies++;
+// 	$('.supplies').text(`Supplies: (${playersGroup.supplies}`);
+// });
 $('.gameButtonHunt').on('click', (e) => {
 	// let randomNumber = Math.floor(Math.random() * 5);
 	// let shot = food + randomNumber;
