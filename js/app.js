@@ -4,6 +4,7 @@ $('.wagon').hide();
 
 let timePassing;
 let food = 0;
+let shot = 0;
 let seconds = 0;
 let minutes = 0;
 
@@ -119,9 +120,16 @@ $('.gameButtonSupplies').on('click', (e) => {
 	$('.supplies').text(`Supplies: (${playersGroup.supplies}`);
 });
 $('.gameButtonHunt').on('click', (e) => {
-	let randomNumber = Math.floor(Math.random() * 5);
-	let shot = food + randomNumber;
-	$('.food').text(`Food: ${shot}`);
+	// let randomNumber = Math.floor(Math.random() * 5);
+	// let shot = food + randomNumber;
+	// let foodTotal = shot++;
+	// $('.food').text(`Food: ${foodTotal}`);
+	// console.log(foodTotal);
+	let randoNum = Math.floor(Math.random() * 4);
+	let foodTotal = food += randoNum;
+	console.log(randoNum);
+	console.log(foodTotal);
+	$('.food').text(`Food: ${foodTotal}`)
 });
 
 
@@ -135,12 +143,24 @@ const levelTwo = () => {
 };
 
 
+//Check to see if Level = 2, and FOOD is 0. If so, the FEED button will 
+//be disabled. Doesn't work.
+// const checkFood = () => {
+// 	let foodTotal = shot++;
+
+// 	if (seconds > 180 && shot === 0) {
+// 		$('.gameButtonFeed').disabled = true;
+// 	};
+// }
 
 
 
 
-
-
+// for (let i = 0; i < gameButtonHunt.cicks; i++) {
+// 	let randomNumber = Math.floor(Math.random() * 5);
+// 	let food = 0;
+// 	let shot = food + randomNumber;
+// }
 
 
 
