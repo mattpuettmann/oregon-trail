@@ -1,67 +1,50 @@
-console.log("Welcome to the Oregon Trail!");
-
-
-
-
-//Welcome screen, Start Game button.
-//Welcome screen hides, name input appears.
-//User inputs name.
-//Game begins.
-
-//Hide welcome/start screen, load Level 1 background image and player's wagon.
-//Timer starts.
-//Animation begins.
-//Hunger and Health will incrementally increase/dcrease.
-//Player clicks corresponding buttons to replenish hunger/health stats.
-//If a pre-determined amount of time passes, the player advances to Level 2.
-
-//Hide Level 1 background image.
-//Load Level 2 background image.
-//Reset wagon's position on left side of the screen.
-//Resume timer, restart right-moving animation.
-//Add "Hunt" button.
-//Add "Ammo" statistic.
-//Beginning with Level 2, Hunger can only be replenished if the new Food statistic has value.
-//Hunt will replenish Food statistic by random integers.
-
-class Group {
-	constructor(name, hunger, health, food, ammo) {
-	this.name = name;
-	this.hunger = hunger;
-	this.health = health;
-	this.food = food;
-	this.ammo = ammo;
-	}
-}
+console.log("Up & Running.");
 
 $('.wagon').hide();
 
-let playersGroup = new Group('', 0, 0, 0, 0)
-
 let timePassing;
+let food = 0;
 let seconds = 0;
 let minutes = 0;
 
+class Group {
+	constructor(name, hunger, health, supplies, food) {
+	this.name = name;
+	this.hunger = hunger;
+	this.health = health;
+	this.supplies = supplies;
+	this.food = food;
+	}
+}
 
+let playersGroup = new Group('', 0, 0, 0, 0);
+
+
+
+
+
+
+
+
+
+//Game begins when user submits name:
 $('form').on('submit', (e) => {
 	e.preventDefault();
-	$('.wagon').show();
-	$('.timeStats .level').text("Level: 1");
-	// $('.gameButtons').show();
+	let playerName = $('.nameInput').val();
+	console.log(playerName);
+	$('.vitals h3').text(`${playerName}'s Pioneer Group:`)
 	$('.gameButtonFeed').append($('<input type="button" value="Feed The Group"/>'))
 	$('.gameButtonTreat').append($('<input type="button" value="Treat The Sick"/>'))
-	wagonMoves();
-	const playerName = $('.nameInput').val();
-	console.log(playerName);
+	$('.gameButtonSupplies').append($('<input type="button" value="Forage For Supplies"/>'))
 	$('.nameInput').val('');
-	$('.vitals h3').text(`${playerName}'s Pioneer Group:`)
+	$('.wagon').show();
+	$('.timeStats .level').text(`Level: 1`);
+	wagonMoves();
 	timePassing = setInterval(timerStart, 100);
 });
 
 
-
-
-
+//Timer begins with name submit function above.
 const timerStart = () => {
 	seconds++;
 	$('.seconds').text(`Seconds: ${seconds}`);
@@ -75,15 +58,15 @@ const timerStart = () => {
 	if (seconds % 30 === 0) {
 		healthGoesUp();
 	}
+	if (seconds % 60 === 0) {
+		suppliesGoDown();
+	}
 	if (seconds >= 180 && seconds < 181) {
 		alert("You've crossed the Great Plains! Time to venture into the Rocky Mountains!");
-		// wagonReset();
 		$('.timeStats .level').text("Level: 2");
-		$('body').css('background-image', 'url("https://data.1freewallpapers.com/detail/mountains-vector-landscape-nature.png")');
 		wagonMoves();
-
+		levelTwo();
 	}
-
 	if (playersGroup.hunger >= 10 || playersGroup.health >= 10) {
 		clearInterval(timePassing);
 		alert("Everyone is dead!");
@@ -92,17 +75,37 @@ const timerStart = () => {
 				console.log('y');
 			location.reload(true);
 			}
-	}
+		}
+};
+
+
+
+//Functions that begins animation:
+const wagonMoves = () => {
+	console.log('wagonmoves called.');
+	$('.wagon').animate({left: '90%'}, 18000, function() { $('.wagon').removeAttr('style');});
+};
+
+
+//Functions that affect the Vital Game Stats.
+const hungerGoesUp = () => {
+	playersGroup.hunger++;
+	$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
+};
+const healthGoesUp = () => {
+	playersGroup.health++;
+	$('.health').text(`Health: ${playersGroup.health}`);
+};
+const suppliesGoDown = () => {
+	let supplies = 100;
+	playersGroup.supplies--;
+	$('.supplies').text(`Supplies: ${playersGroup.supplies}`);
+};
 
 
 
 
-
-
-
-}
-
-
+//Give function to the Buttons:
 $('.gameButtonFeed').on('click', (e) => {
 	playersGroup.hunger--;
 	$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
@@ -111,46 +114,25 @@ $('.gameButtonTreat').on('click', (e) => {
 	playersGroup.health--;
 	$('.health').text(`Health: ${playersGroup.health}`);
 });
+$('.gameButtonSupplies').on('click', (e) => {
+	playersGroup.supplies++;
+	$('.supplies').text(`Supplies: (${playersGroup.supplies}`);
+});
+$('.gameButtonHunt').on('click', (e) => {
+	let randomNumber = Math.floor(Math.random() * 5);
+	let shot = food + randomNumber;
+	$('.food').text(`Food: ${shot}`);
+});
 
 
-
-
-
-
-
-
-// const levelGoesUp = () => {
-
-// }
-const hungerGoesUp = () => {
-	playersGroup.hunger++;
-	$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
-}
-const healthGoesUp = () => {
-	playersGroup.health++;
-	$('.health').text(`Health: ${playersGroup.health}`);
-}
-const wagonMoves = () => {
-	$('.wagon').animate({left: '90%'}, 18000, function() { $('.wagon').removeAttr('style');});
-}
-const wagonReset = () => {
-	$('.wagon').animate({left: '-90%'}, 1)
-}
-const levelProgresses = () => {
-	console.log('progresses being called.');
-	$('body').css('background-image', 'url("https://data.1freewallpapers.com/detail/mountains-vector-landscape-nature.png")');
-}
-
-
-
-const startGame = () => {
-	namePlayer();
-	timerStart();
-	beginLevel1();
-	beginLevel2();
-	beginLevel3();
-	beginLevel4();
-}
+//At Level 2, the FEED button will only allow a finite number of clicks, 
+//equal to the amount in FOOD. A new HUNT button will appear, which will add
+//to FOOD random amounts between 0-5. A .disabled=true function will be combined 
+//with an if check to see if there is food in FOOD.
+const levelTwo = () => {
+	console.log('level2 firing');
+	$('.gameButtonHunt').append($('<input type="button" value="Hunt For Food"/>'))
+};
 
 
 
