@@ -79,14 +79,10 @@ const timerStart = () => {
 		alert("You've crossed the Great Plains! Time to venture into the Rocky Mountains!");
 		// wagonReset();
 		$('.timeStats .level').text("Level: 2");
-		// $('.body').css('background-image', 'url("https://data.1freewallpapers.com/detail/mountains-vector-landscape-nature.png")');
 		$('body').css('background-image', 'url("https://data.1freewallpapers.com/detail/mountains-vector-landscape-nature.png")');
+		wagonMoves();
+
 	}
-
-
-
-
-
 
 	if (playersGroup.hunger >= 10 || playersGroup.health >= 10) {
 		clearInterval(timePassing);
@@ -135,7 +131,7 @@ const healthGoesUp = () => {
 	$('.health').text(`Health: ${playersGroup.health}`);
 }
 const wagonMoves = () => {
-	$('.wagon').animate({left: '90%'}, 18000)
+	$('.wagon').animate({left: '90%'}, 18000, function() { $('.wagon').removeAttr('style');});
 }
 const wagonReset = () => {
 	$('.wagon').animate({left: '-90%'}, 1)
