@@ -34,29 +34,22 @@ class Group {
 	}
 }
 
-
 $('.wagon').hide();
-$('.gameButtons').hide();
+
 let playersGroup = new Group('', 0, 0, 0, 0)
 
 let timePassing;
 let seconds = 0;
 let minutes = 0;
 
-$('.feed').on('click', (e) => {
-	playersGroup.hunger--;
-	$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
-});
-$('.treat').on('click', (e) => {
-	playersGroup.health--;
-	$('.health').text(`Health: ${playersGroup.health}`);
-});
-
 
 $('form').on('submit', (e) => {
 	e.preventDefault();
 	$('.wagon').show();
-	$('.gameButtons').show();
+	$('.timeStats .level').text("Level: 1");
+	// $('.gameButtons').show();
+	$('.gameButtonFeed').append($('<input type="button" value="Feed The Group"/>'))
+	$('.gameButtonTreat').append($('<input type="button" value="Treat The Sick"/>'))
 	wagonMoves();
 	const playerName = $('.nameInput').val();
 	console.log(playerName);
@@ -82,9 +75,12 @@ const timerStart = () => {
 	if (seconds % 30 === 0) {
 		healthGoesUp();
 	}
-	if (seconds >= 180) {
+	if (seconds >= 180 && seconds < 181) {
 		alert("You've crossed the Great Plains! Time to venture into the Rocky Mountains!");
-		clearInterval(timePassing);
+		// wagonReset();
+		$('.timeStats .level').text("Level: 2");
+		// $('.body').css('background-image', 'url("https://data.1freewallpapers.com/detail/mountains-vector-landscape-nature.png")');
+		$('body').css('background-image', 'url("https://data.1freewallpapers.com/detail/mountains-vector-landscape-nature.png")');
 	}
 
 
@@ -111,6 +107,16 @@ const timerStart = () => {
 }
 
 
+$('.gameButtonFeed').on('click', (e) => {
+	playersGroup.hunger--;
+	$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
+});
+$('.gameButtonTreat').on('click', (e) => {
+	playersGroup.health--;
+	$('.health').text(`Health: ${playersGroup.health}`);
+});
+
+
 
 
 
@@ -129,7 +135,14 @@ const healthGoesUp = () => {
 	$('.health').text(`Health: ${playersGroup.health}`);
 }
 const wagonMoves = () => {
-	$('.wagon').animate({left: '1050px'}, 18000)
+	$('.wagon').animate({left: '90%'}, 18000)
+}
+const wagonReset = () => {
+	$('.wagon').animate({left: '-90%'}, 1)
+}
+const levelProgresses = () => {
+	console.log('progresses being called.');
+	$('body').css('background-image', 'url("https://data.1freewallpapers.com/detail/mountains-vector-landscape-nature.png")');
 }
 
 

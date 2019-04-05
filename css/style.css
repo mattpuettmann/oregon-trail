@@ -1,6 +1,8 @@
 body {
 	background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/57/Great_Plains%2C_Nebraska%2C_U.S._1.jpg');
 	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
 
 }
 
@@ -10,16 +12,30 @@ body {
 	height: 100%;
 }
 
-.title {
-	background-color: green;
+.logo {
+	text-align: center;
 	position: relative;
-	top: 0;
+	padding: 20px 0 20px 0;
+	background-color: black;
+}
+.logo img {
+	height: 150px;
+	width: auto;
+}
+
+/*.title {
+	background-color: black;
+	position: relative;
+/*	top: 0;*/*/
 
 }
 
 h1 {
 	font-family: 'Arial';
 	text-align: center;
+	padding: 50px 0 50px 0;
+	margin-top: 0;
+	margin-bottom: 0;
 	color: white;
 }
 
@@ -27,6 +43,8 @@ form {
 	text-align: center;
 	background-color: black;
 	opacity: .5;
+	padding: 25px 0 25px 0;
+	margin-top: 0;
 }
 
 .timeStats {
@@ -38,20 +56,40 @@ form {
 	padding: 0 30px 0 30px;
 }
 
-.gameButtons {
+.vitals {
+	background-color: black;
+	opacity: .4;
+	color: white;
+	width: 25%;
+	margin-bottom: 15px;
+}
+.vitals h3 {
+	padding-top: 15px;
+	margin: 20px 0 0 30px;
+}
+.vitals li {
+	padding: 15px 0 15px 0;
+}
+ul {
+	list-style-type: none
+}
 
+.gameButtons {
+	display: inline;
+	position: relative;
 	text-align: center;
 }
 .gameButtons button {
+	display: inline-flex;
 	position: relative;
-	text-align: center;
+/*	text-align: center;*/
 
 }
 
 .wagon {
-	padding: 225px 0 80px 0;
+	padding: 50px 0 50px 0;
 	position: relative;
-	bottom: 0;
+/*	bottom: 0;*/
 }
 
 footer {
