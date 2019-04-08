@@ -39,9 +39,6 @@ $('form').on('submit', (e) => {
 	let playerName = $('.nameInput').val();
 	console.log(playerName);
 	$('.vitals h3').text(`${playerName}'s Pioneer Group:`)
-	// $('.gameButtonFeed').append($('<input type="button" value="Feed The Group"/>'))
-	// $('.gameButtonTreat').append($('<input type="button" value="Treat The Sick"/>'))
-	// $('.gameButtonSupplies').append($('<input type="button" value="Forage For Supplies"/>'))
 	$('.nameInput').val('');
 	$('.wagon').show();
 	$('.timeStats .level').text(`Level: 1`);
@@ -134,12 +131,15 @@ const healthGoesUp = () => {
 
 
 $('.feed').on('click', (e) => {
-	playersGroup.hunger--;
-	foodStart--;
-	console.log(foodStart);
-	$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
-	$('.food').text(`Food: ${foodStart}`);
+	if (foodStart > 0) {
+		playersGroup.hunger--;
+		foodStart--;
+		console.log(foodStart);
+		$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
+		$('.food').text(`Food: ${foodStart}`);
+	}		
 });
+
 $('.treat').on('click', (e) => {
 	playersGroup.health--;
 	$('.health').text(`Health: ${playersGroup.health}`);

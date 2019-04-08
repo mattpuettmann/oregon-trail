@@ -26,11 +26,13 @@ form {
 }
 form input {
 /*	margin-top: 50px;*/
+	font-size: 36px;
 }
 form button {
 	font-family: 'Yanone Kaffeesatz', sans-serif;
 	color: white;
 	background-color: black;
+	font-size: 36px;
 
 }
 
