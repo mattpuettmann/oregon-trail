@@ -1,6 +1,67 @@
-.wagon {
-	padding: 50px 0 50px 0;
+.background {
+	background-image: url('https://img.freepik.com/free-vector/plain-blue-sky-background_1308-20781.jpg?size=626&ext=jpg');
+	background-size: cover;
+	width: 1080px;
+	height: 600px;
+}
+.title {
+	text-align: center;
+	padding: 20px 0 20px 0;
+	background-color: black;
+	opacity: .5;
+}
+.title img {
+	text-align: center;
+	max-width: 25%;
+}
+
+form {
+	text-align: center;
+	padding: 10px 0 10px 0;
+}
+
+.timeStats {
+	text-align: center;
+	padding: 15px;
+}
+.timeStats h4 {
+	display: inline;
+	padding: 20px 20px 0 20px;
+
+}
+
+.vitals {
+	background-color: black;
+	color: white;
+	width: 180px;
+	opacity: .5;
+	padding: 5px 10px 5px 10px;
+	margin-left: 10px;
+}
+.vitals ul {
+	list-style-type: none;
+}
+
+
+.gameButtons {
+	display: inline-flex;
+}
+.gameButtons button {
+	position: relative;
+	text-align: center;
+}
+
+
+.background .wagon {
+	padding: 150px 0 50px 0;
 	position: relative;
 }
+
+
+
+
+
+
+
 
 

@@ -1,9 +1,12 @@
 console.log("Up & Running.");
 
 $('.wagon').hide();
+$('.vitals').hide();
+$('.timeStats').hide();
 
 let timePassing;
 let food = 0;
+let foodStart = 100;
 let shot = 0;
 let seconds = 0;
 let minutes = 0;
@@ -21,15 +24,11 @@ let playersGroup = new Group('', 0, 0, 0);
 
 
 
-
-
-
-
-
-
-//Game begins when user submits name:
 $('form').on('submit', (e) => {
 	e.preventDefault();
+	$('form').hide();
+	$('.vitals').show();
+	$('.timeStats').show();
 	let playerName = $('.nameInput').val();
 	console.log(playerName);
 	$('.vitals h3').text(`${playerName}'s Pioneer Group:`)
@@ -39,12 +38,12 @@ $('form').on('submit', (e) => {
 	$('.nameInput').val('');
 	$('.wagon').show();
 	$('.timeStats .level').text(`Level: 1`);
+	$('.food').text(`Food: 100`);
 	wagonMoves();
 	timePassing = setInterval(timerStart, 100);
 });
 
 
-//Timer begins with name submit function above.
 const timerStart = () => {
 	seconds++;
 	$('.seconds').text(`Seconds: ${seconds}`);
@@ -54,6 +53,7 @@ const timerStart = () => {
 	}
 	if (seconds % 10 === 0) {
 		hungerGoesUp();
+		foodGoesDown();
 	}
 	if (seconds % 30 === 0) {
 		healthGoesUp();
@@ -61,12 +61,22 @@ const timerStart = () => {
 	if (seconds >= 180 && seconds < 181) {
 		alert("You've crossed the Great Plains! Time to venture into the Rocky Mountains!");
 		$('.timeStats .level').text("Level: 2");
+		console.log('background switch now.');
+		$('.background').css('background-image', "url('https://images.all-free-download.com/images/graphicthumb/vector_mountains_288155.jpg')")
 		wagonMoves();
 		levelTwo();
+		// $('.gameButtonFeed').off('click');
+		// $('.gameButtonFeed').on('click', (e) => {
+		// 	playersGroup.food--;
+		// 	playersGroup.hunger--;
+		// 	$('.food').text(`Food: ${playersGroup.food}`);
+		// 	console.log(playersGroup.health);
+		// });
 	} else if (seconds > 360 && seconds < 362) {
 		console.log('level 3 firing');
 		alert("You've crossed the Rockies! Now onto the Pacific Northwest!");
 		$('.timeStats .level').text("Level: 3");
+		$('.background').css('background-image', "url('https://images.all-free-download.com/images/graphicthumb/forest_background_leafless_trees_icons_cartoon_design_6829779.jpg')")
 		wagonMoves();
 	} else if (seconds > 540 && seconds < 542) {
 		console.log('final level firing');
@@ -87,14 +97,11 @@ const timerStart = () => {
 
 
 
-//Functions that begins animation:
+
 const wagonMoves = () => {
 	console.log('wagonmoves called.');
 	$('.wagon').animate({left: '90%'}, 18000, function() { $('.wagon').removeAttr('style');});
 };
-
-
-//Functions that affect the Vital Game Stats.
 const hungerGoesUp = () => {
 	playersGroup.hunger++;
 	$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
@@ -103,44 +110,30 @@ const healthGoesUp = () => {
 	playersGroup.health++;
 	$('.health').text(`Health: ${playersGroup.health}`);
 };
-// const suppliesGoDown = () => {
-// 	let supplies = 100;
-// 	playersGroup.supplies--;
-// 	$('.supplies').text(`Supplies: ${playersGroup.supplies}`);
-// };
+const foodGoesDown = () => {
+	let foodTotal = foodStart -= 1;
+	console.log(foodTotal);
+	$('.food').text(`Food: ${foodTotal}`)
+};
 
 
 
-
-//Give function to the Buttons:
 $('.gameButtonFeed').on('click', (e) => {
 	playersGroup.hunger--;
 	$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
-	if (seconds % 180 === 0) {
-		foodTotal--;
-		console.log("button shouldn't work")
-		console.log(foodTotal);
-	}
 });
 $('.gameButtonTreat').on('click', (e) => {
 	playersGroup.health--;
 	$('.health').text(`Health: ${playersGroup.health}`);
 });
-// $('.gameButtonSupplies').on('click', (e) => {
-// 	playersGroup.supplies++;
-// 	$('.supplies').text(`Supplies: (${playersGroup.supplies}`);
-// });
 $('.gameButtonHunt').on('click', (e) => {
-	// let randomNumber = Math.floor(Math.random() * 5);
-	// let shot = food + randomNumber;
-	// let foodTotal = shot++;
-	// $('.food').text(`Food: ${foodTotal}`);
-	// console.log(foodTotal);
+	console.log(foodTotal);
 	let randoNum = Math.floor(Math.random() * 4);
-	let foodTotal = food += randoNum;
+	let huntTotal = food += randoNum;
+	let newFoodTotal = foodTotal - huntTotal;
 	console.log(randoNum);
 	console.log(foodTotal);
-	$('.food').text(`Food: ${foodTotal}`)
+	$('.food').text(`Food: ${newFoodTotal}`)
 });
 
 
@@ -154,24 +147,6 @@ const levelTwo = () => {
 };
 
 
-//Check to see if Level = 2, and FOOD is 0. If so, the FEED button will 
-//be disabled. Doesn't work.
-// const checkFood = () => {
-// 	let foodTotal = shot++;
-
-// 	if (seconds > 180 && shot === 0) {
-// 		$('.gameButtonFeed').disabled = true;
-// 	};
-// }
-
-
-
-
-// for (let i = 0; i < gameButtonHunt.cicks; i++) {
-// 	let randomNumber = Math.floor(Math.random() * 5);
-// 	let food = 0;
-// 	let shot = food + randomNumber;
-// }
 
 
 
