@@ -130,19 +130,15 @@ const healthGoesUp = () => {
 	playersGroup.health++;
 	$('.health').text(`Health: ${playersGroup.health}`);
 };
-// const foodGoesDown = () => {
-// 	let foodTotal = foodStart -= 1;
-// 	// console.log(foodTotal);
-// 	$('.food').text(`Food: ${foodTotal}`)
-// };
-
 
 
 
 $('.feed').on('click', (e) => {
 	playersGroup.hunger--;
-	// newFoodTotal--;
+	foodStart--;
+	console.log(foodStart);
 	$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
+	$('.food').text(`Food: ${foodStart}`);
 });
 $('.treat').on('click', (e) => {
 	playersGroup.health--;
@@ -150,13 +146,13 @@ $('.treat').on('click', (e) => {
 });
 $('.hunt').on('click', (e) => {
 	let randoNum = Math.floor(Math.random() * 4);
-	let foodTotal = foodStart += randoNum;
-	// let newFoodTotal = foodStart + huntTotal;
-	// let finalFoodTotal = newFoodTotal + huntTotal;
+	// let foodTotal = foodStart;
+	let newFoodTotal = foodStart += randoNum;
+	// console.log(foodStart);
 	console.log(randoNum);
-	console.log(foodTotal);
-	// console.log(finalFoodTotal);
-	$('.food').text(`Food: ${foodTotal}`);
+	console.log(newFoodTotal);
+	// console.log(foodTotal);
+	$('.food').text(`Food: ${newFoodTotal}`);
 });
 $('.predator').on('click', (e) => {
 	console.log('predator clicked');
