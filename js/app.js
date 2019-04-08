@@ -1,5 +1,6 @@
 console.log("Up & Running.");
 
+$('.gameButtons').hide();
 $('.predator').hide();
 $('.wagon').hide();
 $('.title').hide();
@@ -8,7 +9,7 @@ $('.timeStats').hide();
 
 let timePassing;
 let food = 0;
-let foodStart = 100;
+let foodStart = 10;
 let shot = 0;
 let seconds = 0;
 let minutes = 0;
@@ -29,6 +30,7 @@ let playersGroup = new Group('', 0, 0, 0);
 
 $('form').on('submit', (e) => {
 	e.preventDefault();
+	$('.gameButtons').show();
 	$('.title').show();
 	$('form').hide();
 	$('.vitals').show();
@@ -37,13 +39,13 @@ $('form').on('submit', (e) => {
 	let playerName = $('.nameInput').val();
 	console.log(playerName);
 	$('.vitals h3').text(`${playerName}'s Pioneer Group:`)
-	$('.gameButtonFeed').append($('<input type="button" value="Feed The Group"/>'))
-	$('.gameButtonTreat').append($('<input type="button" value="Treat The Sick"/>'))
-	$('.gameButtonSupplies').append($('<input type="button" value="Forage For Supplies"/>'))
+	// $('.gameButtonFeed').append($('<input type="button" value="Feed The Group"/>'))
+	// $('.gameButtonTreat').append($('<input type="button" value="Treat The Sick"/>'))
+	// $('.gameButtonSupplies').append($('<input type="button" value="Forage For Supplies"/>'))
 	$('.nameInput').val('');
 	$('.wagon').show();
 	$('.timeStats .level').text(`Level: 1`);
-	$('.food').text(`Food: 100`);
+	$('.food').text(`Food: 10`);
 	wagonMoves();
 	timePassing = setInterval(timerStart, 100);
 });
@@ -58,7 +60,7 @@ const timerStart = () => {
 	}
 	if (seconds % 10 === 0) {
 		hungerGoesUp();
-		foodGoesDown();
+		// foodGoesDown();
 	}
 	if (seconds % 30 === 0) {
 		healthGoesUp();
@@ -66,6 +68,10 @@ const timerStart = () => {
 	if (seconds % 430 === 0) {
 		$('.predator').show();
 	}
+	if (seconds % 538 === 0 && buttonClicks < 5) {
+		alert("You've been mauled by the lion! You lose!");
+	}
+
 
 
 
@@ -78,7 +84,7 @@ const timerStart = () => {
 		console.log('background switch now.');
 		$('.background').css('background-image', "url('https://images.all-free-download.com/images/graphicthumb/vector_mountains_288155.jpg')")
 		wagonMoves();
-		levelTwo();
+		// levelTwo();
 		// $('.gameButtonFeed').off('click');
 		// $('.gameButtonFeed').on('click', (e) => {
 		// 	playersGroup.food--;
@@ -124,33 +130,33 @@ const healthGoesUp = () => {
 	playersGroup.health++;
 	$('.health').text(`Health: ${playersGroup.health}`);
 };
-const foodGoesDown = () => {
-	let foodTotal = foodStart -= 1;
-	console.log(foodTotal);
-	$('.food').text(`Food: ${foodTotal}`)
-};
-const predAppears = () => {
-
-};
+// const foodGoesDown = () => {
+// 	let foodTotal = foodStart -= 1;
+// 	// console.log(foodTotal);
+// 	$('.food').text(`Food: ${foodTotal}`)
+// };
 
 
 
-$('.gameButtonFeed').on('click', (e) => {
+
+$('.feed').on('click', (e) => {
 	playersGroup.hunger--;
+	// newFoodTotal--;
 	$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
 });
-$('.gameButtonTreat').on('click', (e) => {
+$('.treat').on('click', (e) => {
 	playersGroup.health--;
 	$('.health').text(`Health: ${playersGroup.health}`);
 });
-$('.gameButtonHunt').on('click', (e) => {
-	console.log(foodTotal);
+$('.hunt').on('click', (e) => {
 	let randoNum = Math.floor(Math.random() * 4);
-	let huntTotal = food += randoNum;
-	let newFoodTotal = foodTotal - huntTotal;
+	let foodTotal = foodStart += randoNum;
+	// let newFoodTotal = foodStart + huntTotal;
+	// let finalFoodTotal = newFoodTotal + huntTotal;
 	console.log(randoNum);
 	console.log(foodTotal);
-	$('.food').text(`Food: ${newFoodTotal}`)
+	// console.log(finalFoodTotal);
+	$('.food').text(`Food: ${foodTotal}`);
 });
 $('.predator').on('click', (e) => {
 	console.log('predator clicked');
@@ -166,10 +172,10 @@ $('.predator').on('click', (e) => {
 //equal to the amount in FOOD. A new HUNT button will appear, which will add
 //to FOOD random amounts between 0-5. A .disabled=true function will be combined 
 //with an if check to see if there is food in FOOD.
-const levelTwo = () => {
-	console.log('level2 firing');
-	$('.gameButtonHunt').append($('<input type="button" value="Hunt For Food"/>'))
-};
+// const levelTwo = () => {
+// 	console.log('level2 firing');
+// 	$('.gameButtonHunt').append($('<input type="button" value="Hunt For Food"/>'))
+// };
 
 
 

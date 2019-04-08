@@ -7,22 +7,37 @@
 .title {
 	text-align: center;
 	padding: 20px 0 20px 0;
-	background-color: black;
-	opacity: .5;
+	background-color: rgba(0, 0, 0, .5);
+
 }
 .title img {
 	text-align: center;
 	max-width: 25%;
+
 }
 
 form {
 	text-align: center;
-	padding: 200px 0 50px 0;
+/*	margin: 100px 0 100px 0;*/
+	padding: 40px 40px 50px 40px;
+/*	margin: 200px 200px 0 200px;*/
+	background-color: rgba(0, 0, 0, .5);
+
+}
+form input {
+/*	margin-top: 50px;*/
+}
+form button {
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	color: white;
+	background-color: black;
+
 }
 
 .timeStats {
 	text-align: center;
 	padding: 15px;
+
 }
 .timeStats h4 {
 	display: inline;
@@ -32,43 +47,68 @@ form {
 }
 
 .vitals {
-	background-color: black;
+	background-color: rgba(0, 0, 0, .5);
 	font-family: 'Yanone Kaffeesatz', sans-serif;
 	color: white;
-	width: 180px;
-	opacity: .5;
+	width: 150px;
 	padding: 5px 10px 5px 10px;
 	margin-left: 10px;
 }
+.vitals h3 {
+	text-shadow: 2px 2px black;
+	text-align: center;
+
+}
 .vitals ul {
+	text-shadow: 2px 2px black;
 	list-style-type: none;
 }
 
 
 .gameButtons {
-	display: inline-flex;
-	position: relative;
 	text-align: center;
+	position: relative;
+
 }
 .gameButtons button {
 	position: relative;
 	bottom: 0;
 	text-align: center;
+	background-color: black;
+	color: white;
+	font-size:18px;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+.gameButtonFeed {
+	position: relative;
+	bottom: 0;
+	text-align: center;
+	background-color: #01f9f2;
+	color: #f9018a;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+.gameButtonTreat {
+	position: relative;
+	bottom: 0;
+	text-align: center;
+	background-color: #01f9f2;
+	color: #f9018a;
 	font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
 
 .background .wagon {
-	padding: 150px 0 50px 0;
+	padding: 130px 0 50px 0;
 	position: relative;
 }
 
 .predator {
 	position: relative;
-	height: 50%;
+	height: 10%;
+
 }
-.gifs .predator img {
-	height: 50%;
+.gifs .predator {
+	height: 10%;
 }
 
 .gifs {
@@ -84,7 +124,13 @@ form {
 
 
 
-
+footer {
+	text-align: center;
+	background-color: black;
+	color: white;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	bottom: 0;
+}
 
 
 
