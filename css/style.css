@@ -1,5 +1,5 @@
 .background {
-	background-image: url('https://img.freepik.com/free-vector/plain-blue-sky-background_1308-20781.jpg?size=626&ext=jpg');
+	background-image: url('http://s3.amazonaws.com/opa-photos/photos/photos/000/060/726/large/5-oregon-trail-150722.jpg?1469394153');
 	background-size: cover;
 	width: 1080px;
 	height: 600px;
@@ -17,7 +17,7 @@
 
 form {
 	text-align: center;
-	padding: 10px 0 10px 0;
+	padding: 200px 0 50px 0;
 }
 
 .timeStats {
@@ -27,11 +27,13 @@ form {
 .timeStats h4 {
 	display: inline;
 	padding: 20px 20px 0 20px;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
 
 }
 
 .vitals {
 	background-color: black;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
 	color: white;
 	width: 180px;
 	opacity: .5;
@@ -49,6 +51,7 @@ form {
 .gameButtons button {
 	position: relative;
 	text-align: center;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
 

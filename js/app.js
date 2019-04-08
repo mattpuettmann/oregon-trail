@@ -29,6 +29,7 @@ $('form').on('submit', (e) => {
 	$('form').hide();
 	$('.vitals').show();
 	$('.timeStats').show();
+	$('.background').css('background-image', "url('https://img.freepik.com/free-vector/plain-blue-sky-background_1308-20781.jpg?size=626&ext=jpg')")
 	let playerName = $('.nameInput').val();
 	console.log(playerName);
 	$('.vitals h3').text(`${playerName}'s Pioneer Group:`)
