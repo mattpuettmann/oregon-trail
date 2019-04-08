@@ -1,6 +1,8 @@
 console.log("Up & Running.");
 
+$('.predator').hide();
 $('.wagon').hide();
+$('.title').hide();
 $('.vitals').hide();
 $('.timeStats').hide();
 
@@ -10,6 +12,7 @@ let foodStart = 100;
 let shot = 0;
 let seconds = 0;
 let minutes = 0;
+let buttonClicks = 0;
 
 class Group {
 	constructor(name, hunger, health, food) {
@@ -26,6 +29,7 @@ let playersGroup = new Group('', 0, 0, 0);
 
 $('form').on('submit', (e) => {
 	e.preventDefault();
+	$('.title').show();
 	$('form').hide();
 	$('.vitals').show();
 	$('.timeStats').show();
@@ -59,6 +63,15 @@ const timerStart = () => {
 	if (seconds % 30 === 0) {
 		healthGoesUp();
 	}
+	if (seconds % 430 === 0) {
+		$('.predator').show();
+	}
+
+
+
+
+
+
 	if (seconds >= 180 && seconds < 181) {
 		alert("You've crossed the Great Plains! Time to venture into the Rocky Mountains!");
 		$('.timeStats .level').text("Level: 2");
@@ -116,6 +129,9 @@ const foodGoesDown = () => {
 	console.log(foodTotal);
 	$('.food').text(`Food: ${foodTotal}`)
 };
+const predAppears = () => {
+
+};
 
 
 
@@ -135,6 +151,14 @@ $('.gameButtonHunt').on('click', (e) => {
 	console.log(randoNum);
 	console.log(foodTotal);
 	$('.food').text(`Food: ${newFoodTotal}`)
+});
+$('.predator').on('click', (e) => {
+	console.log('predator clicked');
+	buttonClicks++;
+	console.log(buttonClicks);
+	if (buttonClicks >= 5) {
+		$('.predator').hide();
+	}
 });
 
 

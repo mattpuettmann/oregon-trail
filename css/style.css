@@ -47,9 +47,12 @@ form {
 
 .gameButtons {
 	display: inline-flex;
+	position: relative;
+	text-align: center;
 }
 .gameButtons button {
 	position: relative;
+	bottom: 0;
 	text-align: center;
 	font-family: 'Yanone Kaffeesatz', sans-serif;
 }
@@ -59,6 +62,25 @@ form {
 	padding: 150px 0 50px 0;
 	position: relative;
 }
+
+.predator {
+	position: relative;
+	height: 50%;
+}
+.gifs .predator img {
+	height: 50%;
+}
+
+.gifs {
+/*	display: inline-flex;*/
+}
+/*.gifs .wagon {
+	float: left;
+}
+.gifs .predator {
+	float: right;
+	position: relative;
+}*/
 
 
 
