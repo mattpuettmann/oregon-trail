@@ -16,6 +16,7 @@ let shot = 0;
 let seconds = 0;
 let minutes = 0;
 let buttonClicks = 0;
+let rockClicks = 0;
 let possibleCods = ["Dysentery", "Cholera", "Windmill Cancer"]
 
 class Group {
@@ -78,6 +79,10 @@ const timerStart = () => {
 		$('.predator').append('<img id="pred" src="http://orig13.deviantart.net/9148/f/2014/335/8/a/8a4e989949e9952f033073fbffffc459-d889cdt.gif">')
 		$('.predator').animate({left: '-=155px', top: '+=75px'}, 6000);
 	}
+	if (seconds % 550 === 0) {
+		$('.rocks').append('<img id="rock" src="https://purepng.com/public/uploads/large/purepng.com-stones-and-rocksstonerockmineralmaterialbuilding-1411527102621p7ef4.png">');
+		$('.rocks').animate({left: '-=750px'}, 5000);
+	}
 	if (seconds % 455 === 0 && buttonClicks < 5) {
 		alert("You've been mauled by the lion! You lose!");
 		let value = prompt("Play again? y/n");
@@ -86,9 +91,18 @@ const timerStart = () => {
 				location.reload(true);
 			}
 	} 
+	if (seconds % 590 === 0 && rockClicks < 1) {
+		alert("You crashed into a rock and sank everyone!")
+		let value = prompt("Play again? y/n");
+			if (value === 'y'){
+				console.log('y');
+				location.reload(true);
+			}
+	}
 	if (seconds >= 180 && seconds < 181) {
 		alert("You've crossed the Great Plains! Time to venture into the Rocky Mountains!");
 		$('.timeStats .level').text("Level: 2");
+		// $('.wagon img').attr('src', "url('backgrounds/yamaha.png')");
 		console.log('background switch now.');
 		$('.background').css('background-image', "url('https://images.all-free-download.com/images/graphicthumb/vector_mountains_288155.jpg')")
 		wagonMoves();
@@ -102,6 +116,7 @@ const timerStart = () => {
 		console.log('final level firing');
 		alert("You're almost there! You just need to FORD THE RIVER!!!");
 		$('timeStats .level').text("Level: FINAL!");
+		// $('.wagon img').attr('src', "url('backgrounds/yamaha.png')");
 		$('.background').css('background-image', "url('backgrounds/oregon-river.png')");
 		wagonMoves();
 	}
@@ -202,6 +217,14 @@ $('.predator').on('click', (e) => {
 	console.log(buttonClicks);
 	if (buttonClicks >= 5) {
 		$('.predator').hide();
+	}
+});
+$('.rocks').on('click', (e) => {
+	console.log('rock clicked');
+	rockClicks++;
+	console.log(rockClicks);
+	if (rockClicks >= 1) {
+		$('.rocks').hide();
 	}
 });
 
