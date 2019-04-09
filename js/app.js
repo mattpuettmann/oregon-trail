@@ -1,5 +1,6 @@
 console.log("Up & Running.");
 
+$('form').hide();
 $('.gameButtons').hide();
 $('.predator').hide();
 $('.wagon').hide();
@@ -25,6 +26,12 @@ class Group {
 }
 
 let playersGroup = new Group('', 0, 0, 0);
+
+$('.play').on('click', (e) => {
+	$('.welcome').hide();
+	$('.play').hide();
+	$('form').show();
+});
 
 
 
@@ -65,7 +72,7 @@ const timerStart = () => {
 	if (seconds % 430 === 0) {
 		$('.predator').show();
 	}
-	if (seconds % 538 === 0 && buttonClicks < 5) {
+	if (seconds % 490 === 0 && buttonClicks < 5) {
 		alert("You've been mauled by the lion! You lose!");
 	}
 
@@ -81,14 +88,6 @@ const timerStart = () => {
 		console.log('background switch now.');
 		$('.background').css('background-image', "url('https://images.all-free-download.com/images/graphicthumb/vector_mountains_288155.jpg')")
 		wagonMoves();
-		// levelTwo();
-		// $('.gameButtonFeed').off('click');
-		// $('.gameButtonFeed').on('click', (e) => {
-		// 	playersGroup.food--;
-		// 	playersGroup.hunger--;
-		// 	$('.food').text(`Food: ${playersGroup.food}`);
-		// 	console.log(playersGroup.health);
-		// });
 	} else if (seconds > 360 && seconds < 362) {
 		console.log('level 3 firing');
 		alert("You've crossed the Rockies! Now onto the Pacific Northwest!");
@@ -139,7 +138,6 @@ $('.feed').on('click', (e) => {
 		$('.food').text(`Food: ${foodStart}`);
 	}		
 });
-
 $('.treat').on('click', (e) => {
 	playersGroup.health--;
 	$('.health').text(`Health: ${playersGroup.health}`);
@@ -164,14 +162,6 @@ $('.predator').on('click', (e) => {
 });
 
 
-//At Level 2, the FEED button will only allow a finite number of clicks, 
-//equal to the amount in FOOD. A new HUNT button will appear, which will add
-//to FOOD random amounts between 0-5. A .disabled=true function will be combined 
-//with an if check to see if there is food in FOOD.
-// const levelTwo = () => {
-// 	console.log('level2 firing');
-// 	$('.gameButtonHunt').append($('<input type="button" value="Hunt For Food"/>'))
-// };
 
 
 
