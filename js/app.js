@@ -11,6 +11,7 @@ $('.timeStats').hide();
 let timePassing;
 let food = 0;
 let foodStart = 10;
+let suppliesStart = 5;
 let shot = 0;
 let seconds = 0;
 let minutes = 0;
@@ -50,6 +51,7 @@ $('form').on('submit', (e) => {
 	$('.wagon').show();
 	$('.timeStats .level').text(`Level: 1`);
 	$('.food').text(`Food: 10`);
+	$('.supplies').text(`Supplies: 5`)
 	wagonMoves();
 	timePassing = setInterval(timerStart, 100);
 });
@@ -139,19 +141,39 @@ $('.feed').on('click', (e) => {
 	}		
 });
 $('.treat').on('click', (e) => {
-	playersGroup.health--;
-	$('.health').text(`Health: ${playersGroup.health}`);
+	if (suppliesStart > 0) {
+		playersGroup.health--;
+		suppliesStart--;
+		console.log(suppliesStart);
+		$('.supplies').text(`Supplies: ${suppliesStart}`);
+		$('.health').text(`Health: ${playersGroup.health}`);
+	}
 });
+
 $('.hunt').on('click', (e) => {
 	let randoNum = Math.floor(Math.random() * 4);
 	// let foodTotal = foodStart;
 	let newFoodTotal = foodStart += randoNum;
 	// console.log(foodStart);
-	console.log(randoNum);
-	console.log(newFoodTotal);
+	// console.log(randoNum);
+	// console.log(newFoodTotal);
 	// console.log(foodTotal);
 	$('.food').text(`Food: ${newFoodTotal}`);
 });
+
+// let randomNum = Math.floor(Math.random() * 3);
+// let newSupTotal = suppliesStart += randomNum;
+$('.forage').on('click', (e) => {
+	let randomNum = Math.floor(Math.random() * 3);
+	console.log(randomNum);
+	let newSupTotal = suppliesStart += randomNum;
+	$('.supplies').text(`Supplies: ${newSupTotal}`);
+
+});
+
+
+
+
 $('.predator').on('click', (e) => {
 	console.log('predator clicked');
 	buttonClicks++;
