@@ -1,6 +1,7 @@
 console.log("Up & Running.");
 
 $('form').hide();
+$('.rules').hide();
 $('.gameButtons').hide();
 $('.predator').hide();
 $('.wagon').hide();
@@ -28,9 +29,15 @@ class Group {
 
 let playersGroup = new Group('', 0, 0, 0);
 
-$('.play').on('click', (e) => {
+$('.welcome').on('click', (e) => {
 	$('.welcome').hide();
-	$('.play').hide();
+	$('.rules').show();
+	// $('.rules ul').append('<ul></ul>')
+	// 	$('.ul').append('<li>Rules are simple:</li>');
+	// 	$('.ul').append('<li>You win or you die.</li>');
+});
+$('.rules').on('click', (e) => {
+	$('.rules').hide();
 	$('form').show();
 });
 
@@ -66,7 +73,6 @@ const timerStart = () => {
 	}
 	if (seconds % 10 === 0) {
 		hungerGoesUp();
-		// foodGoesDown();
 	}
 	if (seconds % 30 === 0) {
 		healthGoesUp();
@@ -101,7 +107,6 @@ const timerStart = () => {
 		alert("You're almost there! You just need to FORD THE RIVER!!!");
 		$('timeStats .level').text("Level: FINAL!");
 	}
-	
 	if (playersGroup.hunger >= 10 || playersGroup.health >= 10) {
 		clearInterval(timePassing);
 		alert("Everyone is dead!");
@@ -149,31 +154,21 @@ $('.treat').on('click', (e) => {
 		$('.health').text(`Health: ${playersGroup.health}`);
 	}
 });
-
 $('.hunt').on('click', (e) => {
-	let randoNum = Math.floor(Math.random() * 4);
-	// let foodTotal = foodStart;
-	let newFoodTotal = foodStart += randoNum;
-	// console.log(foodStart);
-	// console.log(randoNum);
-	// console.log(newFoodTotal);
-	// console.log(foodTotal);
-	$('.food').text(`Food: ${newFoodTotal}`);
+	if (suppliesStart > 0) {
+		suppliesStart--;
+		let randoNum = Math.floor(Math.random() * 4);
+		let newFoodTotal = foodStart += randoNum;
+		$('.food').text(`Food: ${newFoodTotal}`);
+		$('.supplies').text(`Supplies: ${suppliesStart}`);
+	}
 });
-
-// let randomNum = Math.floor(Math.random() * 3);
-// let newSupTotal = suppliesStart += randomNum;
 $('.forage').on('click', (e) => {
 	let randomNum = Math.floor(Math.random() * 3);
 	console.log(randomNum);
 	let newSupTotal = suppliesStart += randomNum;
 	$('.supplies').text(`Supplies: ${newSupTotal}`);
-
 });
-
-
-
-
 $('.predator').on('click', (e) => {
 	console.log('predator clicked');
 	buttonClicks++;

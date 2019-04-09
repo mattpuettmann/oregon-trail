@@ -4,26 +4,23 @@
 	width: 1080px;
 	height: 600px;
 }
-/*.welcome {
-	text-align: center;
-
-}
 .welcome img {
-	max-width: 60%;
-	padding-top: 100px;
-}
-.welcome button {
+	width: 60%;
 	text-align: center;
+	padding-left: 200px;
+	padding-top: 125px;
 }
-*//*.background button {
-	font-family: 'Yanone Kaffeesatz', sans-serif;
-	color: white;
-	text-align: center;
-	background-color: black;
+.rules {
+	background-color: rgba(0, 0, 0, .5);
+	position: relative;
+}
+.rules ul {
 	font-size: 36px;
-	margin-left: 500px;
-
-}*/
+	position: relative;
+	list-style-type: none;
+	text-align: center;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+}
 .title {
 	text-align: center;
 	padding: 20px 0 20px 0;
