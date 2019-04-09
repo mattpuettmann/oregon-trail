@@ -3,7 +3,6 @@ console.log("Up & Running.");
 $('form').hide();
 $('.rules').hide();
 $('.gameButtons').hide();
-$('.predator').hide();
 $('.wagon').hide();
 $('.title').hide();
 $('.vitals').hide();
@@ -75,8 +74,9 @@ const timerStart = () => {
 		healthGoesUp();
 	}
 	if (seconds % 410 === 0) {
-		$('.predator').show();
-		$('.predator').animate({left: '-=155px', top: '+=75px'}, 6000, function() { $('.predator').removeAttr('style');});
+		console.log('lion shows up');
+		$('.predator').append('<img id="pred" src="http://orig13.deviantart.net/9148/f/2014/335/8/a/8a4e989949e9952f033073fbffffc459-d889cdt.gif">')
+		$('.predator').animate({left: '-=155px', top: '+=75px'}, 6000);
 	}
 	if (seconds % 455 === 0 && buttonClicks < 5) {
 		alert("You've been mauled by the lion! You lose!");
@@ -85,8 +85,7 @@ const timerStart = () => {
 				console.log('y');
 				location.reload(true);
 			}
-	}
-
+	} 
 	if (seconds >= 180 && seconds < 181) {
 		alert("You've crossed the Great Plains! Time to venture into the Rocky Mountains!");
 		$('.timeStats .level').text("Level: 2");
