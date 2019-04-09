@@ -133,18 +133,6 @@ form button {
 	height: 10%;
 }
 
-.gifs {
-/*	display: inline-flex;*/
-}
-/*.gifs .wagon {
-	float: left;
-}
-.gifs .predator {
-	float: right;
-	position: relative;
-}*/
-
-
 
 footer {
 	text-align: center;
@@ -152,6 +140,7 @@ footer {
 	color: white;
 	font-family: 'Yanone Kaffeesatz', sans-serif;
 	bottom: 0;
+	width: 1080px;
 }
 
 

@@ -85,7 +85,6 @@ const timerStart = () => {
 		alert("You've crossed the Great Plains! Time to venture into the Rocky Mountains!");
 		$('.timeStats .level').text("Level: 2");
 		console.log('background switch now.');
-		// $('.background').css('background-image', '../backgrounds/oregon-river.png');
 		$('.background').css('background-image', "url('https://images.all-free-download.com/images/graphicthumb/vector_mountains_288155.jpg')")
 		wagonMoves();
 	} else if (seconds > 360 && seconds < 362) {
@@ -100,6 +99,15 @@ const timerStart = () => {
 		$('timeStats .level').text("Level: FINAL!");
 		$('.background').css('background-image', "url('backgrounds/oregon-river.png')");
 		wagonMoves();
+	}
+	if (seconds >= 720) {
+		alert("YOU'VE MADE IT! Congratulations for getting everyone to Oregon in one piece.");
+		clearInterval(timePassing);
+		let value = prompt("Play again? y/n");
+			if (value === 'y'){
+				console.log('y');
+				location.reload(true);
+			}
 	}
 	if (playersGroup.hunger > 6) {
 		$('.hunger').css('color', 'red');
