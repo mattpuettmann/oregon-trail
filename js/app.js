@@ -17,6 +17,7 @@ let shot = 0;
 let seconds = 0;
 let minutes = 0;
 let buttonClicks = 0;
+let possibleCods = ["Dysentery", "Cholera", "Windmill Cancer"]
 
 class Group {
 	constructor(name, hunger, health, food) {
@@ -32,16 +33,12 @@ let playersGroup = new Group('', 0, 0, 0);
 $('.welcome').on('click', (e) => {
 	$('.welcome').hide();
 	$('.rules').show();
-	// $('.rules ul').append('<ul></ul>')
-	// 	$('.ul').append('<li>Rules are simple:</li>');
-	// 	$('.ul').append('<li>You win or you die.</li>');
 });
+
 $('.rules').on('click', (e) => {
 	$('.rules').hide();
 	$('form').show();
 });
-
-
 
 $('form').on('submit', (e) => {
 	e.preventDefault();
@@ -84,16 +81,11 @@ const timerStart = () => {
 		alert("You've been mauled by the lion! You lose!");
 	}
 
-
-
-
-
-
-
 	if (seconds >= 180 && seconds < 181) {
 		alert("You've crossed the Great Plains! Time to venture into the Rocky Mountains!");
 		$('.timeStats .level').text("Level: 2");
 		console.log('background switch now.');
+		// $('.background').css('background-image', '../backgrounds/oregon-river.png');
 		$('.background').css('background-image', "url('https://images.all-free-download.com/images/graphicthumb/vector_mountains_288155.jpg')")
 		wagonMoves();
 	} else if (seconds > 360 && seconds < 362) {
@@ -106,16 +98,39 @@ const timerStart = () => {
 		console.log('final level firing');
 		alert("You're almost there! You just need to FORD THE RIVER!!!");
 		$('timeStats .level').text("Level: FINAL!");
+		$('.background').css('background-image', "url('backgrounds/oregon-river.png')");
+		wagonMoves();
 	}
-	if (playersGroup.hunger >= 10 || playersGroup.health >= 10) {
+	if (playersGroup.hunger > 6) {
+		$('.hunger').css('color', 'red');
+	} else {
+		$('.hunger').css('color', 'white');
+	}
+	if (playersGroup.health > 6) {
+		$('.health').css('color', 'red');
+	} else {
+		$('.health').css('color', 'white');
+	}
+	if (playersGroup.hunger >= 10) {
 		clearInterval(timePassing);
-		alert("Everyone is dead!");
+		alert("Your group has starved to death.");
 		let value = prompt('Play again? y/n')
 			if (value === 'y') {
 				console.log('y');
 			location.reload(true);
 			}
-		}
+	}
+	if (playersGroup.health >= 10) {
+		clearInterval(timePassing);
+		let randCod = Math.floor(Math.random() * 2)
+		alert(`You have died of ${possibleCods[randCod]}.`);
+		// $('.background').css('background-image', "")
+		let value = prompt('Play again? y/n')
+			if (value === 'y') {
+				console.log('y');
+			location.reload(true);
+			}
+	}
 };
 
 
