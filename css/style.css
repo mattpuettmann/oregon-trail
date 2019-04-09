@@ -9,6 +9,7 @@
 	text-align: center;
 	padding-left: 200px;
 	padding-top: 125px;
+	cursor: pointer;
 }
 .rules {
 	background-color: rgba(0, 0, 0, .5);
@@ -52,6 +53,7 @@ form button {
 	color: white;
 	background-color: black;
 	font-size: 36px;
+	cursor: pointer;
 
 }
 
@@ -120,17 +122,22 @@ form button {
 
 
 .background .wagon {
-	padding: 110px 0 50px 0;
+	padding: 100px 0 50px 0;
 	position: relative;
 }
 
-.predator {
+.background .predator {
+	padding-left: 500px;
 	position: relative;
-	height: 10%;
-
+	max-height: 125px;
 }
-.gifs .predator {
-	height: 10%;
+.predator img {
+	max-height: 125px;
+	bottom: 50px;
+/*	position: relative;*/
+}
+.gifs {
+	display: inline-flex;
 }
 
 

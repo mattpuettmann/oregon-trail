@@ -74,11 +74,17 @@ const timerStart = () => {
 	if (seconds % 30 === 0) {
 		healthGoesUp();
 	}
-	if (seconds % 430 === 0) {
+	if (seconds % 410 === 0) {
 		$('.predator').show();
+		$('.predator').animate({left: '-=155px', top: '+=75px'}, 6000, function() { $('.predator').removeAttr('style');});
 	}
-	if (seconds % 490 === 0 && buttonClicks < 5) {
+	if (seconds % 455 === 0 && buttonClicks < 5) {
 		alert("You've been mauled by the lion! You lose!");
+		let value = prompt("Play again? y/n");
+			if (value === 'y'){
+				console.log('y');
+				location.reload(true);
+			}
 	}
 
 	if (seconds >= 180 && seconds < 181) {
@@ -132,7 +138,6 @@ const timerStart = () => {
 		clearInterval(timePassing);
 		let randCod = Math.floor(Math.random() * 2)
 		alert(`You have died of ${possibleCods[randCod]}.`);
-		// $('.background').css('background-image', "")
 		let value = prompt('Play again? y/n')
 			if (value === 'y') {
 				console.log('y');
@@ -146,7 +151,7 @@ const timerStart = () => {
 
 const wagonMoves = () => {
 	console.log('wagonmoves called.');
-	$('.wagon').animate({left: '90%'}, 18000, function() { $('.wagon').removeAttr('style');});
+	$('.wagon').animate({left: '+=930px'}, 18000, function() { $('.wagon').removeAttr('style');});
 };
 const hungerGoesUp = () => {
 	playersGroup.hunger++;
