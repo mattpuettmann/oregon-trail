@@ -99,6 +99,7 @@ form button {
 	font-size:18px;
 	font-family: 'Yanone Kaffeesatz', sans-serif;
 	cursor: pointer;
+	border-radius: 20px;
 }
 .gameButtonFeed {
 	position: relative;

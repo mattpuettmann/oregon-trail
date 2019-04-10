@@ -7,6 +7,8 @@ $('.wagon').hide();
 $('.title').hide();
 $('.vitals').hide();
 $('.timeStats').hide();
+$('.rock1').hide();
+$('.rock2').hide();
 
 
 let timePassing;
@@ -94,7 +96,7 @@ const timerStart = () => {
 	if (seconds % 320 === 0 && seconds < 640) {
 		console.log('lion shows up');
 		$('.wolf').append('<img id="wolf" src="https://66.media.tumblr.com/tumblr_m6nenjMAEg1qikuj5o1_500.gif">')
-		$('.wolf').animate({left: '+=155px', top: '+=75px'}, 3000);
+		$('.wolf').animate({left: '+=155px', top: '+=75px'}, 6000);
 	}
 	if (seconds % 359 === 0 && wolfClicks < 5) {
 		alert("You've been mauled by the wolf! You lose!");
@@ -106,11 +108,13 @@ const timerStart = () => {
 	}
 	if (seconds % 550 === 0) {
 		console.log('rock1 appears');
+		$('.rock1').show();
 		$('.rock1').append('<img id="rock1" src="https://purepng.com/public/uploads/large/purepng.com-stones-and-rocksstonerockmineralmaterialbuilding-1411527102621p7ef4.png">');
 		$('.rock1').animate({left: '-=750px'}, 5000);
 	}
 	if (seconds % 580 === 0) {
 		console.log('rock2 appears');
+		$('.rock2').show();
 		$('.rock2').append('<img id="rock2" src ="https://www.gobigrock.com/wp-content/uploads/2016/10/Fieldstone.png">')
 		$('.rock2').animate({left: '-=750px'}, 5000);
 	}
