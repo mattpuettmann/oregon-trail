@@ -8,6 +8,7 @@ $('.title').hide();
 $('.vitals').hide();
 $('.timeStats').hide();
 
+
 let timePassing;
 let food = 0;
 let foodStart = 10;
@@ -15,9 +16,12 @@ let suppliesStart = 5;
 let shot = 0;
 let seconds = 0;
 let minutes = 0;
-let buttonClicks = 0;
-let rockClicks = 0;
+let lionClicks = 0;
+let wolfClicks = 0;
+let rock1Clicks = 0;
+let rock2Clicks = 0;
 let possibleCods = ["Dysentery", "Cholera", "Windmill Cancer"]
+
 
 class Group {
 	constructor(name, hunger, health, food) {
@@ -28,18 +32,18 @@ class Group {
 	}
 }
 
+
 let playersGroup = new Group('', 0, 0, 0);
+
 
 $('.welcome').on('click', (e) => {
 	$('.welcome').hide();
 	$('.rules').show();
 });
-
 $('.rules').on('click', (e) => {
 	$('.rules').hide();
 	$('form').show();
 });
-
 $('form').on('submit', (e) => {
 	e.preventDefault();
 	$('.gameButtons').show();
@@ -74,16 +78,12 @@ const timerStart = () => {
 	if (seconds % 30 === 0) {
 		healthGoesUp();
 	}
-	if (seconds % 410 === 0) {
+	if (seconds % 210 === 0 && seconds < 410) {
 		console.log('lion shows up');
-		$('.predator').append('<img id="pred" src="http://orig13.deviantart.net/9148/f/2014/335/8/a/8a4e989949e9952f033073fbffffc459-d889cdt.gif">')
-		$('.predator').animate({left: '-=155px', top: '+=75px'}, 6000);
+		$('.lion').append('<img id="pred" src="http://orig13.deviantart.net/9148/f/2014/335/8/a/8a4e989949e9952f033073fbffffc459-d889cdt.gif">')
+		$('.lion').animate({left: '-=155px', top: '+=75px'}, 6000);
 	}
-	if (seconds % 550 === 0) {
-		$('.rocks').append('<img id="rock" src="https://purepng.com/public/uploads/large/purepng.com-stones-and-rocksstonerockmineralmaterialbuilding-1411527102621p7ef4.png">');
-		$('.rocks').animate({left: '-=750px'}, 5000);
-	}
-	if (seconds % 455 === 0 && buttonClicks < 5) {
+	if (seconds % 260 === 0 && lionClicks < 5) {
 		alert("You've been mauled by the lion! You lose!");
 		let value = prompt("Play again? y/n");
 			if (value === 'y'){
@@ -91,7 +91,38 @@ const timerStart = () => {
 				location.reload(true);
 			}
 	} 
-	if (seconds % 590 === 0 && rockClicks < 1) {
+	if (seconds % 320 === 0 && seconds < 640) {
+		console.log('lion shows up');
+		$('.wolf').append('<img id="wolf" src="https://66.media.tumblr.com/tumblr_m6nenjMAEg1qikuj5o1_500.gif">')
+		$('.wolf').animate({left: '+=155px', top: '+=75px'}, 3000);
+	}
+	if (seconds % 359 === 0 && wolfClicks < 5) {
+		alert("You've been mauled by the wolf! You lose!");
+		let value = prompt("Play again? y/n");
+			if (value === 'y'){
+				console.log('y');
+				location.reload(true);
+			}
+	}
+	if (seconds % 550 === 0) {
+		console.log('rock1 appears');
+		$('.rock1').append('<img id="rock1" src="https://purepng.com/public/uploads/large/purepng.com-stones-and-rocksstonerockmineralmaterialbuilding-1411527102621p7ef4.png">');
+		$('.rock1').animate({left: '-=750px'}, 5000);
+	}
+	if (seconds % 580 === 0) {
+		console.log('rock2 appears');
+		$('.rock2').append('<img id="rock2" src ="https://www.gobigrock.com/wp-content/uploads/2016/10/Fieldstone.png">')
+		$('.rock2').animate({left: '-=750px'}, 5000);
+	}
+	if (seconds % 590 === 0 && rock1Clicks < 1) {
+		alert("You crashed into a rock and sank everyone!")
+		let value = prompt("Play again? y/n");
+			if (value === 'y'){
+				console.log('y');
+				location.reload(true);
+			}
+	}
+	if (seconds % 610 === 0 && rock2Clicks < 1) {
 		alert("You crashed into a rock and sank everyone!")
 		let value = prompt("Play again? y/n");
 			if (value === 'y'){
@@ -102,7 +133,6 @@ const timerStart = () => {
 	if (seconds >= 180 && seconds < 181) {
 		alert("You've crossed the Great Plains! Time to venture into the Rocky Mountains!");
 		$('.timeStats .level').text("Level: 2");
-		// $('.wagon img').attr('src', "url('backgrounds/yamaha.png')");
 		console.log('background switch now.');
 		$('.background').css('background-image', "url('https://images.all-free-download.com/images/graphicthumb/vector_mountains_288155.jpg')")
 		wagonMoves();
@@ -116,7 +146,6 @@ const timerStart = () => {
 		console.log('final level firing');
 		alert("You're almost there! You just need to FORD THE RIVER!!!");
 		$('timeStats .level').text("Level: FINAL!");
-		// $('.wagon img').attr('src', "url('backgrounds/yamaha.png')");
 		$('.background').css('background-image', "url('backgrounds/oregon-river.png')");
 		wagonMoves();
 	}
@@ -161,8 +190,6 @@ const timerStart = () => {
 };
 
 
-
-
 const wagonMoves = () => {
 	console.log('wagonmoves called.');
 	$('.wagon').animate({left: '+=930px'}, 18000, function() { $('.wagon').removeAttr('style');});
@@ -177,12 +204,11 @@ const healthGoesUp = () => {
 };
 
 
-
 $('.feed').on('click', (e) => {
 	if (foodStart > 0) {
 		playersGroup.hunger--;
 		foodStart--;
-		console.log(foodStart);
+		// console.log(foodStart);
 		$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
 		$('.food').text(`Food: ${foodStart}`);
 	}		
@@ -191,7 +217,7 @@ $('.treat').on('click', (e) => {
 	if (suppliesStart > 0) {
 		playersGroup.health--;
 		suppliesStart--;
-		console.log(suppliesStart);
+		// console.log(suppliesStart);
 		$('.supplies').text(`Supplies: ${suppliesStart}`);
 		$('.health').text(`Health: ${playersGroup.health}`);
 	}
@@ -211,23 +237,37 @@ $('.forage').on('click', (e) => {
 	let newSupTotal = suppliesStart += randomNum;
 	$('.supplies').text(`Supplies: ${newSupTotal}`);
 });
-$('.predator').on('click', (e) => {
+$('.lion').on('click', (e) => {
 	console.log('predator clicked');
-	buttonClicks++;
-	console.log(buttonClicks);
-	if (buttonClicks >= 5) {
-		$('.predator').hide();
+	lionClicks++;
+	console.log(lionClicks);
+	if (lionClicks >= 5) {
+		$('.lion').hide();
 	}
 });
-$('.rocks').on('click', (e) => {
+$('.wolf').on('click', (e) => {
+	console.log('predator clicked');
+	wolfClicks++;
+	if (wolfClicks >= 5) {
+		$('.wolf').hide();
+	}
+});
+$('.rock1').on('click', (e) => {
 	console.log('rock clicked');
-	rockClicks++;
-	console.log(rockClicks);
-	if (rockClicks >= 1) {
-		$('.rocks').hide();
+	rock1Clicks++;
+	// console.log(rockClicks);
+	if (rock1Clicks >= 1) {
+		$('.rock1').hide();
 	}
 });
-
+$('.rock2').on('click', (e) => {
+	console.log('rock clicked');
+	rock2Clicks++;
+	// console.log(rockClicks);
+	if (rock2Clicks >= 1) {
+		$('.rock2').hide();
+	}
+});
 
 
 
