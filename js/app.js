@@ -7,8 +7,12 @@ $('.wagon').hide();
 $('.title').hide();
 $('.vitals').hide();
 $('.timeStats').hide();
+$('.bear').hide();
+$('.charmin').hide();
+$('.tree').hide();
 $('.rock1').hide();
 $('.rock2').hide();
+$('.rock3').hide();
 
 
 let timePassing;
@@ -20,8 +24,12 @@ let seconds = 0;
 let minutes = 0;
 let lionClicks = 0;
 let wolfClicks = 0;
+let bearClicks = 0;
+let charminClicks = 0;
 let rock1Clicks = 0;
 let rock2Clicks = 0;
+let rock3Clicks = 0;
+let treeClicks = 0;
 let possibleCods = ["Dysentery", "Cholera", "Windmill Cancer"]
 
 
@@ -94,12 +102,39 @@ const timerStart = () => {
 			}
 	} 
 	if (seconds % 320 === 0 && seconds < 640) {
-		console.log('lion shows up');
+		console.log('wolf shows up');
 		$('.wolf').append('<img id="wolf" src="https://66.media.tumblr.com/tumblr_m6nenjMAEg1qikuj5o1_500.gif">')
-		$('.wolf').animate({left: '+=155px', top: '+=75px'}, 6000);
+		$('.wolf').animate({left: '+=200px', top: '+=75px'}, 4000);
 	}
-	if (seconds % 359 === 0 && wolfClicks < 5) {
+	if (seconds % 350 === 0 && wolfClicks < 5) {
 		alert("You've been mauled by the wolf! You lose!");
+		let value = prompt("Play again? y/n");
+			if (value === 'y'){
+				console.log('y');
+				location.reload(true);
+			}
+	}
+	if (seconds % 390 === 0) {
+		console.log('bear shows up');
+		$('.bear').show();
+		$('.bear').append('<img id="bear1" src="http://bestanimations.com/Animals/Mammals/Bears/brown-bear-animated-gif-3.gif">')
+		$('.bear').animate({left: '-=155px', top: '+=75px'}, 6000);
+	}
+	if (seconds % 444 === 0 && bearClicks < 5) {
+		alert("You've been mauled by a bear! You lose.");
+		let value = prompt("Play again? y/n");
+			if (value === 'y'){
+				console.log('y');
+				location.reload(true);
+			}
+	}
+	if (seconds % 500 === 0) {
+		$('.charmin').show();
+		$('.charmin').append('<img id="bear2" src="https://appstickers-cdn.appadvice.com/1196723163/820628269/d8c831f36e0550ae0dbaa13ef9cb90d3-9.gif">')
+		$('.charmin').animate({left: '+=155px', top: '+=75px'}, 4000);
+	}
+	if (seconds % 539 === 0 && charminClicks < 5) {
+		alert("You've been mauled by a bear!");
 		let value = prompt("Play again? y/n");
 			if (value === 'y'){
 				console.log('y');
@@ -118,6 +153,16 @@ const timerStart = () => {
 		$('.rock2').append('<img id="rock2" src ="https://www.gobigrock.com/wp-content/uploads/2016/10/Fieldstone.png">')
 		$('.rock2').animate({left: '-=750px'}, 5000);
 	}
+	if (seconds % 610 === 0) {
+		$('.tree').show();
+		$('.tree').append('<img id="tree" src="http://www.imarvintpa.com/Mapping/Terrain/Plants/Trees/Fallen/CFF_fallen-tree-jrl_kpl2.png">')
+		$('.tree').animate({left: '-=750px'}, 5000);
+	}
+	if (seconds % 640 === 0) {
+		$('.rock3').show();
+		$('.rock3').append('<img id="rock3" src="https://phosphorusfive.files.wordpress.com/2017/08/rock.png">')
+		$('.rock3').animate({left: '-=750px'}, 5000);
+	}
 	if (seconds % 590 === 0 && rock1Clicks < 1) {
 		alert("You crashed into a rock and sank everyone!")
 		let value = prompt("Play again? y/n");
@@ -128,6 +173,22 @@ const timerStart = () => {
 	}
 	if (seconds % 610 === 0 && rock2Clicks < 1) {
 		alert("You crashed into a rock and sank everyone!")
+		let value = prompt("Play again? y/n");
+			if (value === 'y'){
+				console.log('y');
+				location.reload(true);
+			}
+	}
+	if (seconds % 635 === 0 && treeClicks < 1) {
+		alert("You crashed into a tree and killed us all.");
+		let value = prompt("Play again? y/n");
+			if (value === 'y'){
+				console.log('y');
+				location.reload(true);
+			}
+	}
+	if (seconds % 641 === 0 && rock3Clicks < 1) {
+		alert("You crashed into a rock and killed us all.");
 		let value = prompt("Play again? y/n");
 			if (value === 'y'){
 				console.log('y');
@@ -172,7 +233,7 @@ const timerStart = () => {
 	} else {
 		$('.health').css('color', 'white');
 	}
-	if (playersGroup.hunger >= 10) {
+	if (playersGroup.hunger >= 10 && seconds < 542) {
 		clearInterval(timePassing);
 		alert("Your group has starved to death.");
 		let value = prompt('Play again? y/n')
@@ -181,7 +242,7 @@ const timerStart = () => {
 			location.reload(true);
 			}
 	}
-	if (playersGroup.health >= 10) {
+	if (playersGroup.health >= 10 && seconds < 542) {
 		clearInterval(timePassing);
 		let randCod = Math.floor(Math.random() * 2)
 		alert(`You have died of ${possibleCods[randCod]}.`);
@@ -199,12 +260,16 @@ const wagonMoves = () => {
 	$('.wagon').animate({left: '+=930px'}, 18000, function() { $('.wagon').removeAttr('style');});
 };
 const hungerGoesUp = () => {
-	playersGroup.hunger++;
-	$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
+	if (seconds < 541) {
+		playersGroup.hunger++;
+		$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
+	}
 };
 const healthGoesUp = () => {
-	playersGroup.health++;
-	$('.health').text(`Health: ${playersGroup.health}`);
+	if (seconds < 541) {
+		playersGroup.health++;
+		$('.health').text(`Health: ${playersGroup.health}`);
+	}
 };
 
 
@@ -256,6 +321,19 @@ $('.wolf').on('click', (e) => {
 		$('.wolf').hide();
 	}
 });
+$('.bear').on('click', (e) => {
+	console.log('bear clicked');
+	bearClicks++;
+	if (bearClicks >= 5) {
+		$('.bear').hide();
+	}
+});
+$('.charmin').on('click', (e) => {
+	charminClicks++;
+	if (charminClicks >= 5) {
+		$('.charmin').hide();
+	}
+});
 $('.rock1').on('click', (e) => {
 	console.log('rock clicked');
 	rock1Clicks++;
@@ -270,6 +348,18 @@ $('.rock2').on('click', (e) => {
 	// console.log(rockClicks);
 	if (rock2Clicks >= 1) {
 		$('.rock2').hide();
+	}
+});
+$('.tree').on('click', (e) => {
+	treeClicks++;
+	if (treeClicks >= 1) {
+		$('.tree').hide();
+	}
+});
+$('.rock3').on('click', (e) => {
+	rock3Clicks++;
+	if (rock3Clicks >= 1) {
+		$('.rock3').hide();
 	}
 });
 

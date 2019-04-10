@@ -145,6 +145,26 @@ form button {
 	bottom: 50px;
 	cursor: crosshair;
 }
+.background .bear {
+	padding-left: 500px;
+	position: relative;
+	max-height: 125px;
+}
+.bear img {
+	max-height: 75px;
+	bottom: 50px;
+	cursor: crosshair;
+}
+.background .charmin {
+	padding-left: 500px;
+	position: relative;
+	max-height: 125px;
+}
+.charmin img {
+	max-height: 75px;
+	bottom: 50px;
+	cursor: crosshair;
+}
 .background .rock1 {
 	position: relative;
 	max-height: 75px;
@@ -161,6 +181,24 @@ form button {
 	padding-left: 700px;
 }
 .rock2 img{
+	max-height: 75px;
+}
+.background .tree {
+	position: relative;
+	max-height: 75px;
+	padding-top: 60px;
+	padding-left: 700px;
+}
+.tree img{
+	max-height: 75px;
+}
+.background .rock3 {
+	position: relative;
+	max-height: 75px;
+	padding-top: 60px;
+	padding-left: 700px;
+}
+.rock3 img{
 	max-height: 75px;
 }
 .gifs {
