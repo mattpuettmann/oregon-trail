@@ -35,10 +35,10 @@ let possibleCods = ["Dysentery", "Cholera", "Windmill Cancer"]
 
 class Group {
 	constructor(name, hunger, health, food) {
-	this.name = name;
-	this.hunger = hunger;
-	this.health = health;
-	this.food = food;
+		this.name = name;
+		this.hunger = hunger;
+		this.health = health;
+		this.food = food;
 	}
 }
 
@@ -277,7 +277,6 @@ $('.feed').on('click', (e) => {
 	if (foodStart > 0) {
 		playersGroup.hunger--;
 		foodStart--;
-		// console.log(foodStart);
 		$('.hunger').text(`Hunger: ${playersGroup.hunger}`);
 		$('.food').text(`Food: ${foodStart}`);
 	}		
@@ -286,7 +285,6 @@ $('.treat').on('click', (e) => {
 	if (suppliesStart > 0) {
 		playersGroup.health--;
 		suppliesStart--;
-		// console.log(suppliesStart);
 		$('.supplies').text(`Supplies: ${suppliesStart}`);
 		$('.health').text(`Health: ${playersGroup.health}`);
 	}
@@ -337,7 +335,6 @@ $('.charmin').on('click', (e) => {
 $('.rock1').on('click', (e) => {
 	console.log('rock clicked');
 	rock1Clicks++;
-	// console.log(rockClicks);
 	if (rock1Clicks >= 1) {
 		$('.rock1').hide();
 	}
@@ -345,7 +342,6 @@ $('.rock1').on('click', (e) => {
 $('.rock2').on('click', (e) => {
 	console.log('rock clicked');
 	rock2Clicks++;
-	// console.log(rockClicks);
 	if (rock2Clicks >= 1) {
 		$('.rock2').hide();
 	}
